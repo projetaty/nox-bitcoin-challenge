@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
 Created on 20210128
-Update on 
+Update on 20210201
 @author: Sandro Regis Cardoso
 """
 
 from redis.exceptions import RedisError
 import logging
-
 
 log = logging.getLogger("Order Book")
 
@@ -45,9 +44,6 @@ class NoxTrading(object):
             bidsPriceList = []  # @UnusedVariable
             for vals in self.sellingOffers:
                 asksPriceList.append(vals[0])
-            
-            #for vals in self.purchaseOffers:
-            #    bidsPriceList.append(vals[1])
             
             self.__ASKSLIST = asksPriceList
             #self.__BIDSLIST = bidsPriceList

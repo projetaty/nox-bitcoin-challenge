@@ -30,6 +30,8 @@ def main(*args, **kwargs):
         #Sequency to start services
         try:
             log.debug("Config data %s" %dados_config_file)
+            welcomeMsg = "Olá bem vindo a Nox Bitcoin, qual a operação que deseja operar?"
+            print("%s\n" %welcomeMsg)
         except:
             log.erro(Exception)
     except:
