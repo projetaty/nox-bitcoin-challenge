@@ -10,12 +10,11 @@ from django.test import TestCase
 import logging
 from nox_bitcoin_orders.api_models.main import main
 
-
 log = logging.getLogger("Order Book")
 
 class TestMainProgram(TestCase):
     '''
-    @description: TestCase for MainProgram
+    @Description: TestCase for MainProgram
     '''
     _name = "test.main"
     
@@ -27,10 +26,29 @@ class TestMainProgram(TestCase):
         return
     
     
-    def testLoadNoxTradingServices(self):
+    @classmethod
+    def testLoadNoxTradingServices(cls):
+        dataForTrading = {}
         log.debug("Running testLoadNoxTradingServices.......")
-        pass
-
+        optionSale = "Para Venda de seus Bitcoins digite 1"
+        optionBuy  = "Para Comprar mais ou iniciar sua carteira digite 2"
+        userInput  = "Por favor, digite sua opção aqui:"
+        saleOffer = "Qual a quantidade que deseja vender de sua carteira?"
+        purchaseOffer = "Qual a quantidade que deseja adquirir para sua carteira?"
+        
+        userChoice = int(input("%s\n%s\n%s: " %(optionSale, optionBuy, userInput)))
+        qtyForTrade = 0.0
+        if userChoice == 1:
+            qtyForTrade = float(input("%s: " %(saleOffer)))
+            dataForTrading['ask'] = qtyForTrade
+        elif userChoice == 2:
+            qtyForTrade = float(input("%s: " %(purchaseOffer)))
+            dataForTrading['bids'] = qtyForTrade
+        else:
+            print("Informe uma opção válida por favor...")
+            return cls.testLoadNoxTradingServices()
+        
+        return dataForTrading
 
 
 
