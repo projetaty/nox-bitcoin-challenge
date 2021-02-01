@@ -1,0 +1,54 @@
+2021-01-29 12:49:46 Order Book       INFO     MainThread           load_system_config       Initializing Nox Bitcoin Challenge 0.0.1, loading setup file: ./config/logging.yaml
+2021-01-29 12:49:46 Order Book       INFO     MainThread           main                     Nox Bitcoin Trading Program Copyright: Nox Bitcoin 20210129
+2021-01-29 12:49:46 Order Book       INFO     MainThread           main                     Status Under Development
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           main                     btcUrl https://www.mercadobitcoin.net/api/BTC/orderbook/
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           testDummy                Running testDummy
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag asks  [[218900.26, 0.00066129], [185010.01, 0.49818929], [185010, 0.00145333], [0.0, 0.5151], [185009.99, '']]
+2021-01-29 12:49:46 Order Book       CRITICAL MainThread           __checkDataIntegrity     0.0 value Not allowed value Exception at list index 3
+2021-01-29 12:49:46 Order Book       CRITICAL MainThread           __checkDataIntegrity     Empty value Not allowed value Exception at list index 4
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __chargeBTCAsksQueue     Selling Offers (Queue asks) [b'[218900.26, 0.00066129]', b'[185010.01, 0.49818929]', b'[185010, 0.00145333]']
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag bids  [[121180, 0.00113459], [184800.01, 0.05], [184900, 0.00162255], [184999.9, 0.0002703], [185000, 0.11712343]]
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __chargeBTCBidsQueue     Selling Offers (Queue bids) [b'[121180, 0.00113459]', b'[184800.01, 0.05]', b'[184900, 0.00162255]', b'[184999.9, 0.0002703]', b'[185000, 0.11712343]']
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __init__                 Creating NoxTrading class object
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag asks  [[218900.26, 0.00066129], [185010.01, 0.49818929], [185010, 0.00145333], [0.0, 0.5151], [185009.99, '']]
+2021-01-29 12:49:46 Order Book       CRITICAL MainThread           __checkDataIntegrity     0.0 value Not allowed value Exception at list index 3
+2021-01-29 12:49:46 Order Book       CRITICAL MainThread           __checkDataIntegrity     Empty value Not allowed value Exception at list index 4
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __chargeBTCAsksQueue     Selling Offers (Queue asks) [b'[218900.26, 0.00066129]', b'[185010.01, 0.49818929]', b'[185010, 0.00145333]']
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag bids  [[121180, 0.00113459], [184800.01, 0.05], [184900, 0.00162255], [184999.9, 0.0002703], [185000, 0.11712343]]
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           __chargeBTCBidsQueue     Selling Offers (Queue bids) [b'[121180, 0.00113459]', b'[184800.01, 0.05]', b'[184900, 0.00162255]', b'[184999.9, 0.0002703]', b'[185000, 0.11712343]']
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           setUpClass               >>>> Initializing Test on NoxTrading class
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           setUpClass               Selling Offers [[218900.26, 0.00066129], [185010.01, 0.49818929], [185010, 0.00145333]]
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           setUpClass               Purchase Offers [[121180, 0.00113459], [184800.01, 0.05], [184900, 0.00162255], [184999.9, 0.0002703], [185000, 0.11712343]]
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           findSellingByMatchPrice  MATCH DE OFERTA DE VENDA: $218900.26
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           findSellingByMatchPrice  MATCH DE OFERTA DE VENDA: $185010.01
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           findSellingByMatchPrice  MATCH DE OFERTA DE VENDA: $185010.0
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           findSellingByMatchQuantity MATCH DE OFERTA DE VENDA: 0.00066129
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           findSellingByMatchQuantity MATCH DE OFERTA DE VENDA: 0.49818929
+2021-01-29 12:49:46 Order Book       DEBUG    MainThread           findSellingByMatchQuantity MATCH DE OFERTA DE VENDA: 0.00145333
+2021-01-29 13:24:21 Order Book       INFO     MainThread           load_system_config       Initializing Nox Bitcoin Challenge 0.0.1, loading setup file: ./config/logging.yaml
+2021-01-29 13:24:21 Order Book       INFO     MainThread           main                     Nox Bitcoin Trading Program Copyright: Nox Bitcoin 20210129
+2021-01-29 13:24:21 Order Book       INFO     MainThread           main                     Status Under Development
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           main                     btcUrl https://www.mercadobitcoin.net/api/BTC/orderbook/
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           testDummy                Running testDummy
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag asks  [[218900.26, 0.00066129], [185010.01, 0.49818929], [185010, 0.00145333], [0.0, 0.5151], [185009.99, '']]
+2021-01-29 13:24:21 Order Book       CRITICAL MainThread           __checkDataIntegrity     0.0 value Not allowed value Exception at list index 3
+2021-01-29 13:24:21 Order Book       CRITICAL MainThread           __checkDataIntegrity     Empty value Not allowed value Exception at list index 4
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __chargeBTCAsksQueue     Selling Offers (Queue asks) [b'[218900.26, 0.00066129]', b'[185010.01, 0.49818929]', b'[185010, 0.00145333]']
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag bids  [[121180, 0.00113459], [184800.01, 0.05], [184900, 0.00162255], [184999.9, 0.0002703], [185000, 0.11712343]]
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __chargeBTCBidsQueue     Selling Offers (Queue bids) [b'[121180, 0.00113459]', b'[184800.01, 0.05]', b'[184900, 0.00162255]', b'[184999.9, 0.0002703]', b'[185000, 0.11712343]']
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __init__                 Creating NoxTrading class object
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag asks  [[218900.26, 0.00066129], [185010.01, 0.49818929], [185010, 0.00145333], [0.0, 0.5151], [185009.99, '']]
+2021-01-29 13:24:21 Order Book       CRITICAL MainThread           __checkDataIntegrity     0.0 value Not allowed value Exception at list index 3
+2021-01-29 13:24:21 Order Book       CRITICAL MainThread           __checkDataIntegrity     Empty value Not allowed value Exception at list index 4
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __chargeBTCAsksQueue     Selling Offers (Queue asks) [b'[218900.26, 0.00066129]', b'[185010.01, 0.49818929]', b'[185010, 0.00145333]']
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __splitJsonResponseByTag Splited values of tag bids  [[121180, 0.00113459], [184800.01, 0.05], [184900, 0.00162255], [184999.9, 0.0002703], [185000, 0.11712343]]
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           __chargeBTCBidsQueue     Selling Offers (Queue bids) [b'[121180, 0.00113459]', b'[184800.01, 0.05]', b'[184900, 0.00162255]', b'[184999.9, 0.0002703]', b'[185000, 0.11712343]']
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           setUpClass               >>>> Initializing Test on NoxTrading class
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           setUpClass               Selling Offers [[218900.26, 0.00066129], [185010.01, 0.49818929], [185010, 0.00145333]]
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           setUpClass               Purchase Offers [[121180, 0.00113459], [184800.01, 0.05], [184900, 0.00162255], [184999.9, 0.0002703], [185000, 0.11712343]]
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           findSellingByMatchPrice  MATCH DE OFERTA DE VENDA: $218900.26
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           findSellingByMatchPrice  MATCH DE OFERTA DE VENDA: $185010.01
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           findSellingByMatchPrice  MATCH DE OFERTA DE VENDA: $185010.0
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           findSellingByMatchQuantity MATCH DE OFERTA DE VENDA: 0.00066129
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           findSellingByMatchQuantity MATCH DE OFERTA DE VENDA: 0.49818929
+2021-01-29 13:24:21 Order Book       DEBUG    MainThread           findSellingByMatchQuantity MATCH DE OFERTA DE VENDA: 0.00145333

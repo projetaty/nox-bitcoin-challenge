@@ -1,0 +1,85 @@
+logging:
+  disable_existing_loggers: false
+  formatters:
+    normal:
+      datefmt: '%Y-%m-%d %H:%M:%S'
+      format: '%(asctime)s %(name)-16s %(levelname)-8s %(threadName)-20s %(funcName)-24s %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: DEBUG
+      formatter: normal
+      stream: ext://sys.stdout
+    file_handler:
+      backupCount: 30
+      class: 'logging.handlers.TimedRotatingFileHandler'
+      delay: true
+      encoding: 'utf8'
+      filename: './log/btc_orderbook.log'
+      formatter: 'normal'
+      interval: 1
+      level: 'DEBUG'
+      when: 'midnight'
+  root:
+    handlers:
+    - file_handler
+    - console
+    #- Logstash_handler
+    level: 'DEBUG'
+  version: 1
+queue_server:
+  db: 0
+  #development host and password
+  host: 127.0.0.1
+  password: '05250310'
+  #production host and password
+  #host: 0.0.0.0
+  #password: 'uuuuuuuuuuuuuuaaaaaaaaaaaaaaiiiiiiiiiiiiiiijjjjjjjjjjjjjn99999'
+  port: 6379
+datasources:
+- name: MercadoBitcoin
+  status: true
+  tipo: BTC
+  launch:
+    #change this status if service is no longer used  
+    status: true
+  remote:
+    #main btc host
+    url: https://www.mercadobitcoin.net/api/BTC/orderbook/
+    url_trade: https://www.mercadobitcoin.net/api/BTC/trades/
+    url_ticker: https://www.mercadobitcoin.net/api/BTC/ticker/
+    #alternative btc host in case of fails
+    #reference: https://docs.cryptowat.ch/rest-api/markets/order-book
+    alternative_url: https://api.cryptowat.ch/markets/kraken/btcusd/orderbook
+    #production host
+    #host: 0.0.0.0
+    arquivo_dados_erro: ./datasources/excessao.json
+    max_tentativas: 3
+    smtp:
+    - name: NoxTrading Serv | Critical Error Sev 0
+      destinatarios:
+        copia:
+        - contato@noxbitcoin.com.br
+        nome_principal: BRUNO
+      remetente:
+        email: nox.robot@gnoxbitcoin.com.br
+        nome: NoxTrading Critical Error
+      server:
+        autenticacao:
+          senha: ''
+          usuario: ''
+        host: 'mx.noxbitcoin.com.br'
+        port: 25
+      subject: BTC DS Error
+  input:
+    #parameter used for dev only
+    file: ./datasources/btc_orderbook_in.json
+    minimo_busca: 2
+    iddataflow: noxtrading.000000000000000000000000
+    auth: 'nox trading.eyJpc3MiOiJOUyIsImF1ZCI6InNtYXJ0Lm5zcG9ydGFsLmNvbS5iciIsInN1YiI6IjVhZmFjZWJjMzU2ZDhlNmQ4OGUyMzAxZCIsInNjb3BlIjpbIm1hc3Rlcjp0cnVlIl0sImlhdCI6MTUyODIzNzkyNX0.sample_input'
+  output:
+    file: ./datasources/btc_orderbook_out.json
+    file_erro_confirmacao: ./datasources/btc_orderbook_error.json
+    iddataflow: noxtrading.000000000000000000000000
+    auth: 'nox trading.eyJpc3MiOiJOUyIsImF1ZCI6InNtYXJ0Lm5zcG9ydGFsLmNvbS5iciIsInN1YiI6IjVhZmFjZWJjMzU2ZDhlNmQ4OGUyMzAxZCIsInNjb3BlIjpbIm1hc3Rlcjp0cnVlIl0sImlhdCI6MTUyODIzNzkyNX0.sample_output'
+  
