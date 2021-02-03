@@ -7,8 +7,12 @@ Update on 20210201
 
 from redis.exceptions import RedisError
 import logging
+from nox_bitcoin_orders.api_models.RedisService import RedisService
+import ast
+from time import sleep
 
 log = logging.getLogger("Order Book")
+
 
 class NoxTrading(object):
     '''
@@ -20,80 +24,97 @@ class NoxTrading(object):
     
     _name = "nox.trading"
     
-    __ASKSPRICELIST = []
-    __BIDPRICESLIST = []
+    _ASKSPRICELIST = []
+    _BIDPRICESLIST = []
+    _AVERAGEASKPRICE = 0.0
+    _AVERAGEBIDPRICE = 0.0
+    _AVAILABLEBTC = 0.0
     
     def __init__(self):
         log.debug("Creating NoxTrading class object")
-        #self.__objRedisService = RedisService()
-        """
-        self.sellingOffers = __RedisService.getBTCSellings()
-        sleep(0.007)
-        #self.purchaseOffers = __RedisService.getBTCPurchases()
-        #sleep(0.007)
+        self.__objRedisService = RedisService()
         self.__mountListOfAsksBidsPrices()
-        sleep(0.007)
-        self.__calcAverageAskMarket()
-        """
+        self.__calcTotalAsksOffer()
+        self.__calcAverageBidMarket()
     
     
     
     def __mountListOfAsksBidsPrices(self) -> list:
         try:
+            log.debug("Running __mountListOfAsksBidsPrices")
             asksPriceList = []
             bidsPriceList = []  # @UnusedVariable
-            for vals in self.sellingOffers:
-                asksPriceList.append(vals[0])
             
-            self.__ASKSLIST = asksPriceList
-            #self.__BIDSLIST = bidsPriceList
-            #return self.__ASKSPRICELIST, self.__BIDPRICESLIST
-            return self.__ASKSPRICELIST
+            _sellingOffers = self.__objRedisService.getBTCSellings()
+            for askVals in _sellingOffers:
+                asksPriceList.append(ast.literal_eval(askVals))
+            
+            self._ASKSLIST = asksPriceList
+            sleep(0.007)
+            
+            _purchaseOffers = self.__objRedisService.getBTCPurchases()
+            for bidVals in _purchaseOffers:
+                bidsPriceList.append(ast.literal_eval(bidVals))
+            
+            self._BIDPRICESLIST = bidsPriceList
         except:
             log.critical("Method __mountListOfAsks exception %s" %Exception)
             raise Exception
     
     
     
-    def __registerOrder(self, orderType:str, btcAmount:float = 0.0, btcQty:float = 0.0) -> bool:
-        #@Descritpion: This should be an implementation of abstract method
+    def __calcTotalAsksOffer(self):
         try:
-            pass
-        except:
-            log.critical("Method __registerMarketOrder exception %s" %RedisError)
-            raise Exception
-    
-    
-    
-    def __calcAverageAskMarket(self):
-        try:
-            __sumAsksPrice = 0
-            __sumAsksQty   = 0
-            for asks in self.sellingOffers:
-                __sumAsksPrice =+ asks[0]
-                __sumAsksQty =+ asks[1]
+            _sumAsksPrice = 0
+            _sumAsksQty   = 0
+            for asks in self._ASKSLIST:
+                _sumAsksPrice += asks[0]
+                _sumAsksQty += asks[1]
                 del(asks)
-            average = (__sumAsksQty / __sumAsksPrice)
-            log.info("AVERAGE BITCOIN SELLING PRICE %s" %average)
+            
+            self._AVAILABLEBTC = _sumAsksQty
+            self._AVERAGEASKPRICE = (_sumAsksPrice / len(self._ASKSLIST))
+            log.info("AVERAGE OF BITCOINS PRICE FOR SELLING %s" %self._AVERAGEASKPRICE)
+            log.info("TOTAL OF BITCOINS FOR SELLING %s" %_sumAsksQty)
         except:
-            log.exception("Method __calcAverageAskMarket exception %s" %BaseException)
-            raise BaseException
+            log.exception("Method __calcAverageAskMarket exception %s" %Exception)
+            raise Exception
     
     
     
     def __calcAverageBidMarket(self):
         try:
-            __sumBidsPrice = 0
-            __sumBidsQty   = 0
-            for bids in self.purchaseOffers:
-                __sumBidsPrice =+ bids[0]
-                __sumBidsQty =+ bids[1]
+            _sumBidsPrice = 0
+            _sumBidsQty   = 0
+            for bids in self._BIDPRICESLIST:
+                _sumBidsPrice += bids[0]
+                _sumBidsQty += bids[1]
                 del(bids)
-            average = (__sumBidsQty / __sumBidsPrice)
-            log.info("AVERAGE BITCOIN PURCHASE PRICE %s" %average)
+            
+            self._AVERAGEBIDPRICE = (_sumBidsPrice / len(self._BIDPRICESLIST))
+            log.info("AVERAGE OF BITCOINS PRICE FOR PURCHASE %s" %self._AVERAGEBIDPRICE)
+            log.info("TOTAL OF BITCOINS PURCHASE REQUESTS %s" %_sumBidsQty)
         except:
-            log.exception("Method __calcAverageBidMarket exception %s" %BaseException)
-            raise BaseException
+            log.exception("Method __calcAverageBidMarket exception %s" %Exception)
+            raise Exception
+    
+    
+    
+    def calcOrder(self, orderType:str, btcQty:float = 0.0) -> bool:
+        #@Descritpion: This should be an implementation of abstract method
+        try:
+            if orderType == "ask":
+                maxSalePrice = float(self._ASKSLIST[0][0])
+                transactionAmount = (maxSalePrice * float(btcQty))
+            elif orderType == "bid":
+                maxPurchasePrice = float(self._BIDPRICESLIST[0][0])
+                transactionAmount = (maxPurchasePrice * float(btcQty))
+            
+            self.addTradingToNoxQueue(orderType, btcQty=float(btcQty))
+            return transactionAmount
+        except:
+            log.critical("Method calcOrder exception %s" %Exception)
+            raise Exception
     
     
     
@@ -103,34 +124,38 @@ class NoxTrading(object):
     
     
     
-    def __setBTCSaleOffer(self, btcAmount:float = 0.0, btcQty:float = 0.0) -> list:
+    
+    def addTradingToNoxQueue(self, orderType:str, customerID="000001", btcQty:float=0.0):
         try:
-            _asks = self.__splitJsonResponseByTag("asks")
+            lst = [customerID, btcQty]
+            _redidConn = self.__objRedisService.getRedisQueueInstance()
+            _redidConn.rpush("nox_btc_%s"%orderType, "%s"%lst)
             
-            for idx, lst in enumerate(_asks):
-                #Basic validation of values from external sources
-                __isValid = self.__checkDataIntegrity(lst, idx)
-                if __isValid == False:
-                    #@TODO: NOTIFY SUPPORT
-                    pass
-                else:
-                    self.__REDIS_SERVICE.rpush("btc_asks", "%s"%lst)
-                
-                del(idx)
-                del(lst)
-            
-            
-            log.debug("Selling Offers (Queue %s) %s" %("asks", self.__REDIS_SERVICE.lrange('btc_asks', 0, -1)))
-            redis_key = self.__REDIS_SERVICE.lrange('btc_asks', 0, -1)
-            return redis_key
+            added = _redidConn.lrange("nox_btc_%s"%orderType, 0, -1)
+            log.debug("Added Trading %s" %added)
         except:
-            log.error("Method testChargeBTCAsksQueue exception %s" %RedisError)
             raise RedisError
     
     
     
-    def checkRequestForByuOffer(self, btcAmount:float = 0.0, btcQty:float = 0.0) -> bool:
-        NotImplemented
+    
+    def checkBtcQtyAvailable(self, btcQty:float) -> bool:
+        """
+        @Description: This method do some security calculation for trading having base on 30% of total amount of available BTC in market
+                      It is a dummy validation which may doesn't apply to reality
+        @TODO: Create input for agreement on proposed quantity
+        """
+        try:
+            if (self._AVAILABLEBTC * 0.3) > float(btcQty):
+                return True
+            elif (self._AVAILABLEBTC * 0.3) < float(btcQty):
+                print("Não existe esta quantidade de %s bitcoins disponíveis para compra." %btcQty)
+                print("Ou a quantidade desejada excede nosso limite possível para hoje.")
+                print("Podemos lhe assegurar a aquisição de %s do total de bitcoins disponíveis hoje no mercado" %"30%")
+                print("Estimativa do total para aquisão hoje é de: %s %s" %((self._AVAILABLEBTC * 0.3), "BTC"))
+                print("Preço total estimatdo para esta aquisição é de: R$%s" %(self.calcOrder("bid", (self._AVAILABLEBTC * 0.3))))
+        except:
+            raise Exception
     
     
     
@@ -151,8 +176,8 @@ class NoxTrading(object):
                     del(ask)
                     pass
         except:
-            log.debug("Exception: %s" %BaseException)
-            raise BaseException
+            log.debug("Exception: %s" %Exception)
+            raise Exception
     
     
     
@@ -173,9 +198,9 @@ class NoxTrading(object):
                     del(ask)
                     pass
         except:
-            log.debug("Exception: %s" %BaseException)
-            raise BaseException
-        
+            log.debug("Exception: %s" %Exception)
+            raise Exception
+    
     
     
     def __findClosest(self, param:float) -> float:
@@ -184,7 +209,7 @@ class NoxTrading(object):
     
     
     def findUpperClosestAsk(self, _givenBid:float) -> float:
-        #@TODO: Unify this calculation in __findClosest
+        #@TODO: Unify this calculation in __findClosest. Need to validate calculation
         try:
             __givenBid = _givenBid
             _knowAsksList = self.sellingOffers.copy()
@@ -193,13 +218,13 @@ class NoxTrading(object):
             _closestUpperValue = max(_knowAsksList, key=_computedCloser)
             return _closestUpperValue
         except:
-            log.debug("Exception: %s" %BaseException)
+            log.debug("Exception: %s" %Exception)
             raise Exception
     
     
     
     def __findLowerClosestAsk(self, _givenBid:float) -> float:
-        #@TODO: Unify this calculation in __findClosest
+        #@TODO: Unify this calculation in __findClosest. Need to validate calculation
         try:
             __givenBid = _givenBid
             _knowAsksList = self.sellingOffers.copy()
@@ -207,7 +232,7 @@ class NoxTrading(object):
             _closestUpperValue = max(_knowAsksList, key=_computedCloser)
             return _closestUpperValue
         except:
-            log.debug("Exception: %s" %BaseException)
+            log.debug("Exception: %s" %Exception)
             raise Exception
 
 
