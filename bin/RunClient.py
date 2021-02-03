@@ -16,7 +16,7 @@ class RunClient(object):
     def __init__(self):
         try:
             self.__objNoxTrading = NoxTrading()
-            welcomeMsg = "Olá bem vindo a Nox Bitcoin, qual a operação que deseja operar?"
+            welcomeMsg = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOlá bem vindo a Nox Bitcoin, qual a operação que deseja operar?"
             print("%s\n" %welcomeMsg)
         except:
             raise Exception
@@ -32,7 +32,12 @@ class RunClient(object):
             purchaseOffer = "Qual a quantidade que deseja adquirir para sua carteira?"
             
             
-            userChoice = float(input("%s\n%s\n%s" %(optionSale, optionBuy, userInput)))
+            userChoice = input("%s\n%s\n%s" %(optionSale, optionBuy, userInput))
+            if userChoice == "":
+                userChoice = 0
+            
+            userChoice = float(userChoice)
+            
             btcQty = 0.0
             orderType = ""
             resultMsg = ""
