@@ -72,7 +72,8 @@ Conforme especificado nos requisitos do desafio o sistema possui apenas duas ent
 - Linguagem de programação Python versão 3.7;
 - Servidor de aplicação Django versão 3.0.4;
 - Python/Django REST;
-- Timedecorator versão 0.5.0 : Este módulo colaborativo é utilizado para determinar o tempo de resposta de falha nos testes de consulta ao(s) endpoint(s), para testes de performance de execução dos métodos e para rastreamento do tempo de processamento de métodos onde se espera um limite de resposta. Ele simplifica o uso de Thread.Timeout; 
+- Timeoutdecorator versão 0.5.0 : Este módulo colaborativo é utilizado para determinar o tempo de resposta de falha nos testes de consulta ao(s) endpoint(s), para testes de performance de execução dos métodos e para rastreamento do tempo de processamento de métodos onde se espera um limite de resposta. Ele simplifica o uso de Thread.Timeout;
+- Este módulo timeout-decorator precisa ser incluso no python-path de execução do programa ou pode ser instalado através do comando pip;
 
 
 ## @TODO
