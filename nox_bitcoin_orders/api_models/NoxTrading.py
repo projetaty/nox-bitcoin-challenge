@@ -104,10 +104,11 @@ class NoxTrading(object):
         #@Descritpion: This should be an implementation of abstract method
         try:
             if orderType == "ask":
-                maxSalePrice = float(self._ASKSLIST[0][0])
+                maxSalePrice = float(self._BIDPRICESLIST[0][0])
                 transactionAmount = (maxSalePrice * float(btcQty))
             elif orderType == "bid":
-                maxPurchasePrice = float(self._BIDPRICESLIST[0][0])
+                maxPurchasePrice = float(self._ASKSLIST[0][0])
+                log.info("preço %s" %float(self._ASKSLIST[0][0]))
                 transactionAmount = (maxPurchasePrice * float(btcQty))
             
             self.addTradingToNoxQueue(orderType, btcQty=float(btcQty))
