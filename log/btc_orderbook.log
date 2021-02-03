@@ -652,3 +652,24 @@
 2021-02-03 09:02:57 Order Book       INFO     MainThread           __calcTotalAsksOffer     TOTAL OF BITCOINS FOR SELLING 141.87060968
 2021-02-03 09:02:57 Order Book       INFO     MainThread           __calcAverageBidMarket   AVERAGE OF BITCOINS PRICE FOR PURCHASE 175468.40333850007
 2021-02-03 09:02:57 Order Book       INFO     MainThread           __calcAverageBidMarket   TOTAL OF BITCOINS PURCHASE REQUESTS 119.02467804000011
+2021-02-03 09:05:14 Order Book       DEBUG    MainThread           getRedisQueueInstance    Return Redis Service instance.......
+2021-02-03 09:05:14 Order Book       DEBUG    MainThread           addTradingToNoxQueue     Added Trading ["['000001', 0.98989]"]
+2021-02-03 09:05:37 Order Book       INFO     MainThread           __load_system_config     Initializing Nox Bitcoin Challenge 0.0.1, loading setup file: ./config/logging.yaml
+2021-02-03 09:05:37 Order Book       INFO     MainThread           boot                     Nox Bitcoin Trading Program Copyright: Nox Bitcoin 20210129
+2021-02-03 09:05:37 Order Book       INFO     MainThread           boot                     Status Under Development
+2021-02-03 09:05:37 Order Book       INFO     MainThread           __init__                 RunQueue object.......
+2021-02-03 09:05:37 Order Book       DEBUG    MainThread           createRedisServiceInstance Create Redis Service instance.......
+2021-02-03 09:05:37 Order Book       DEBUG    MainThread           chargeBTCAsksToQueue     Charging BTC Asks Queues.......
+2021-02-03 09:05:37 urllib3.connectionpool DEBUG    MainThread           _new_conn                Starting new HTTPS connection (1): www.mercadobitcoin.net:443
+2021-02-03 09:05:38 urllib3.connectionpool DEBUG    MainThread           _make_request            https://www.mercadobitcoin.net:443 "GET /api/BTC/orderbook/?Accept=application%2Fjson&Authorization=Basic HTTP/1.1" 200 None
+2021-02-03 09:05:39 urllib3.connectionpool DEBUG    MainThread           _new_conn                Starting new HTTPS connection (1): www.mercadobitcoin.net:443
+2021-02-03 09:05:40 urllib3.connectionpool DEBUG    MainThread           _make_request            https://www.mercadobitcoin.net:443 "GET /api/BTC/orderbook/?Accept=application%2Fjson&Authorization=Basic HTTP/1.1" 200 None
+2021-02-03 09:05:41 Order Book       DEBUG    MainThread           __init__                 Creating NoxTrading class object
+2021-02-03 09:05:41 Order Book       DEBUG    MainThread           __mountListOfAsksBidsPrices Running __mountListOfAsksBidsPrices
+2021-02-03 09:05:41 Order Book       INFO     MainThread           __calcTotalAsksOffer     AVERAGE OF BITCOINS PRICE FOR SELLING 208917.96802596
+2021-02-03 09:05:41 Order Book       INFO     MainThread           __calcTotalAsksOffer     TOTAL OF BITCOINS FOR SELLING 140.2709318700001
+2021-02-03 09:05:41 Order Book       INFO     MainThread           __calcAverageBidMarket   AVERAGE OF BITCOINS PRICE FOR PURCHASE 175696.89130896
+2021-02-03 09:05:41 Order Book       INFO     MainThread           __calcAverageBidMarket   TOTAL OF BITCOINS PURCHASE REQUESTS 118.62813264000008
+2021-02-03 09:05:48 Order Book       INFO     MainThread           calcOrder                preço 226500.0
+2021-02-03 09:05:48 Order Book       DEBUG    MainThread           getRedisQueueInstance    Return Redis Service instance.......
+2021-02-03 09:05:48 Order Book       DEBUG    MainThread           addTradingToNoxQueue     Added Trading ["['000001', 0.98989]"]
