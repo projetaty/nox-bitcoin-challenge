@@ -87,21 +87,21 @@ Conforme especificado nos requisitos do desafio o sistema possui apenas duas ent
 -   **Testes de performance global**
 -   **Documentação técnica do módulo**
 -   **Aplicar exemplo de confirmação de ordem**:
--   Sua ordem de compra foi enviada
--   Dados da ordem de compra:
--   Conta:	1981620-7
--   Código da ação:	AMZO34
--   Mercado:	À vista
--   Quantidade à vista:	1
--   Preço à vista:	R$ 112,00
--   Valor financeiro estimado:	R$ 112,00
--   Corretagem estimada:	R$ 4,90
--   Emolumento estimado:	R$ 0,03
--   Validade:	28/01/2021 18:20:00
--   Valor total estimado:	R$ 116,93
--   Ordem de compra enviada em 28/01/2021 às 04:40:35h via 30 horas.
--   Atenção
--   Sua ordem foi enviada para a BM&FBovespa. Para saber se ela foi executada consulte o item Acompanhamento de ordens.
+-   	Sua ordem de compra foi enviada
+-   	Dados da ordem de compra:
+-   	Conta:	1981620-7
+-   	Código da ação:	AMZO34
+-   	Mercado:	À vista
+-   	Quantidade à vista:	1
+-   	Preço à vista:	R$ 112,00
+-   	Valor financeiro estimado:	R$ 112,00
+-   	Corretagem estimada:	R$ 4,90
+-   	Emolumento estimado:	R$ 0,03
+-   	Validade:	28/01/2021 18:20:00
+-   	Valor total estimado:	R$ 116,93
+-   	Ordem de compra enviada em 28/01/2021 às 04:40:35h via 30 horas.
+-   	Atenção
+-   	Sua ordem foi enviada para a BM&FBovespa. Para saber se ela foi executada consulte o item Acompanhamento de ordens.
 
 
 ## Desenvolvimento:
