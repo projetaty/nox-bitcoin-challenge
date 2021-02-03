@@ -43,7 +43,7 @@ class NoxTrading(object):
         try:
             log.debug("Running __mountListOfAsksBidsPrices")
             asksPriceList = []
-            bidsPriceList = []  # @UnusedVariable
+            bidsPriceList = []
             
             _sellingOffers = self.__objRedisService.getBTCSellings()
             for askVals in _sellingOffers:
