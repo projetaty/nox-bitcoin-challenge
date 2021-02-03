@@ -11,7 +11,6 @@ import logging
 from nox_bitcoin_orders.api_models.RedisService import RedisService
 import redis
 
-
 log = logging.getLogger("Order Book")
 
 class TestRedisService(TestCase):
@@ -38,6 +37,7 @@ class TestRedisService(TestCase):
         except:
             log.error("Exception on testGetRedisServiceInstance %s" %Exception)
             raise Exception
+    
 
 
     def testInitializeRedisAskBidQueues(self):
@@ -65,7 +65,9 @@ class TestRedisService(TestCase):
             alternativeUrl = ds['remote']['alternative_url']
             log.debug("ENDPOINT %s" %dsEndpoint)
             res = self.RedisService.initializeRedisAskBidQueues(redisConf, dsEndpoint, alternativeUrl)
-            log.debug("TEST RETURN %s + %s" %(res[0], res[1]))
+            
+            self.assertLessEqual(len(res[0]), 1000)
+            self.assertLessEqual(len(res[1]), 1000)
         except:
             log.error("Exception on testInitializeRedisAskBidQueues %s" %Exception)
             raise Exception

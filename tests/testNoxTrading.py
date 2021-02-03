@@ -49,13 +49,9 @@ class TestNoxTrading(TestCase):
         
         cls.__objRedisService = RedisService()
         queues = cls.__objRedisService.initializeRedisAskBidQueues(redisConf, dsEndpoint, alternativeUrl)
-        cls.sellingOffers = queues[0]
         
+        cls.sellingOffers = queues[0]
         cls.purchaseOffers = queues[1]
-        log.info("NoxTrading %s" %cls.purchaseOffers)
-        sleep(2)
-    
-    
     
     def testDummy(self):
         log.info("NoxTrading %s" %self.sellingOffers)
@@ -63,7 +59,7 @@ class TestNoxTrading(TestCase):
         
         log.info("NoxTrading %s" %self.purchaseOffers)
         sleep(10)
-        pass
+        
     
     
     

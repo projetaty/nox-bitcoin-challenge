@@ -11,10 +11,10 @@ from rest_framework import status
 import logging
 from nox_bitcoin_orders.api_models.BtcOrderBook import BtcOrderBook
 
-from timeout_decorator import TimeoutError
 
 #Used for test proposal and also for track desired limit of method response in production env.
-import timeout_decorator
+#import timeout_decorator  # @UnusedImport
+#from timeout_decorator import TimeoutError  # @UnusedImport
 
 log = logging.getLogger("Order Book")
 
@@ -46,7 +46,7 @@ class TestBtcOrderBook(TestCase):
             #raise Exception
     
     
-    @timeout_decorator.timeout(1)
+    #@timeout_decorator.timeout(1)
     def ttestFailsGetBtcOrderbook(self):
         try:
             log.debug("Running fails to retrieve Order Book timeout 3 sec.")
@@ -59,7 +59,7 @@ class TestBtcOrderBook(TestCase):
             response = requests.get(url, headers)
             self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         except:
-            log.error(TimeoutError)
+            #log.error(TimeoutError)
             log.error("BTC Order Book fails header response %s" %status.HTTP_400_BAD_REQUEST)
             #raise status.HTTP_400_BAD_REQUEST
 

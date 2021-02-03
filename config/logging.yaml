@@ -34,7 +34,7 @@ queue_server:
   password: '05250310'
   #production host and password
   #host: 0.0.0.0
-  #password: 'uuuuuuuuuuuuuuaaaaaaaaaaaaaaiiiiiiiiiiiiiiijjjjjjjjjjjjjn99999'
+  #password: 'uuuuuuuuuuuuuuaaaaaaaaaaaaaaiiiiiiiiiiiiiii'
   port: 6379
 datasources:
 - name: MercadoBitcoin
