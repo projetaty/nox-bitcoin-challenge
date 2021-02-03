@@ -3,7 +3,11 @@
 ## Domínio do problema
 
 Conforme especificado nos requisitos do desafio o sistema possui apenas duas entradas de dados:
+
+
 1) A escolha do tipo de operação (compra ou venda);
+
+
 2) A quantidade de bitcoins a ser adquirida/comprada ou vendida;
 
 
